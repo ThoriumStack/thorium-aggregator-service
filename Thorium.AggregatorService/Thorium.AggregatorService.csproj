@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Version>1.0.0.0</Version>
+    <RootNamespace>Thorium.Aggregator</RootNamespace>
+  
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Flurl" Version="2.8.1" />
+    <PackageReference Include="Flurl.Http" Version="2.4.1" />
+    <PackageReference Include="Humanizer.Core" Version="2.6.2" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.7.0" />
+    <PackageReference Include="IdentityServer4.Contrib.RedisStore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="IdentityServer4" Version="2.3.2" />
+    <PackageReference Include="IdentityServer4.AspNetIdentity" Version="2.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.1" />
+    <PackageReference Include="Polly.Caching.IDistributedCache" Version="1.0.4" />
+    <PackageReference Include="StackExchange.Redis.Extensions.Jil" Version="4.0.5" />
+    <PackageReference Include="Thorium.Core.ApiGateway.ApiClient" Version="1.0.4" />
+    <PackageReference Include="Thorium.Core.DataTools" Version="1.0.3" />
+    <PackageReference Include="Thorium.Core.MicroServices.ProxyGenerator" Version="1.0.4" />
+    <PackageReference Include="Thorium.Core.MicroServices.Restful" Version="1.0.5" />
+    <PackageReference Include="Thorium.Mvc.Tools" Version="1.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+  
+    <Folder Include="ViewModels" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Thorium.Users.ServiceContract\Thorium.Users.ServiceContract.csproj" />
+  </ItemGroup>
+ 
+
+  <Target Name="CertFile">
+    <ItemGroup>
+      <_CustomFiles Include="bin\(Configuration)\(Platform)\*.pfx" />
+      <FilesForPackagingFromProject Include="%(_CustomFiles.Identity)">
+        <DestinationRelativePath>%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
+      </FilesForPackagingFromProject>
+    </ItemGroup>
+  </Target>
+  <PropertyGroup>
+    <CopyAllFilesToSingleFolderForPackageDependsOn>
+      CertFile;
+      $(CopyAllFilesToSingleFolderForPackageDependsOn);
+    </CopyAllFilesToSingleFolderForPackageDependsOn>
+  </PropertyGroup>
+</Project>

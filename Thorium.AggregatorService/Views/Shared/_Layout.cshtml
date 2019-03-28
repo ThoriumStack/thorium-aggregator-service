@@ -1,0 +1,52 @@
+﻿@using Thorium.Aggregator.Resources
+@inject LocService SharedLocalizer
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+
+    <environment names="Development">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
+    </environment>
+    <style>
+        #main-header-icon {
+            background-image: url("/imgaes/banner1.svg");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div class="ui top inverted menu attached" style="background-color: #00a78d">
+    <i id="main-header-icon"
+       class="ui   icon"></i>
+    <label class="ui header item left aligned">Authentication</label>
+</div>
+
+<div class="ui padded middle aligned container" style="max-width: 400px !important; margin-top: 10px; ">
+    
+    
+        @RenderBody()
+    
+</div>
+
+    
+
+<environment names="Development">
+    <script type="text/javascript "src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript "src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
+</environment>
+<environment names="Staging,Production">
+    <script type="text/javascript " src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript " src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
+</environment>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿@model Thorium.Aggregator.Models.AccountViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+<div class="ui center aligned segment" >
+    <h2 class="ui header center aligned">
+       
+        @ViewData["Title"]
+        
+    </h2>
+    <div class="ui divider"></div>
+
+    <form class="ui large form" asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+    
+        <h4>Create a new account.</h4>
+        <hr />
+        
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" name="Email" asp-for="Email" placeholder="Email" required>
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" name="Password" asp-for="Password" placeholder="Password" required>
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" name="ConfirmPassword" asp-for="ConfirmPassword" placeholder="Confirm Password" required>
+            </div>
+        </div>
+        <p asp-validation-for="Email" class="text-danger"></p>
+        <p asp-validation-for="Password" class="text-danger"></p>
+        <p asp-validation-for="ConfirmPassword" class="text-danger"></p>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <button type="submit" class="ui fluid large submit button inverted" style="background-color: #00a78d">Register</button>
+        
+        <div class="ui message">
+            Already Registrated? <a asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" asp-route-bypass="true">Login</a>
+        </div>
+    
+    
+
+    <div class="ui error message"></div>
+
+</form>
+</div>
+

@@ -1,0 +1,57 @@
+﻿@using Thorium.Aggregator.Models
+@using Thorium.Aggregator.Resources
+@model Thorium.Aggregator.Models.AccountViewModels.LoginViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+
+@inject LocService SharedLocalizer
+
+@{
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("login");
+}
+
+<div class="ui center aligned segment" >
+    <h2 class="ui header center aligned">
+       
+            @ViewData["Title"]
+        
+    </h2>
+    <div class="ui divider"></div>
+    <form class="ui large form" asp-controller="Account" asp-action="Login" asp-route-returnurl="@Model.ReturnUrl" method="post">
+   
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" name="Email" asp-for="Email" placeholder='@SharedLocalizer.GetLocalizedHtmlString("email")' required>
+
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" name="Password" asp-for="Password" placeholder='@SharedLocalizer.GetLocalizedHtmlString("password")' required>
+
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui left icon input">
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" name="RememberLogin" asp-for="RememberLogin">
+                    <label>@SharedLocalizer.GetLocalizedHtmlString("rememberMe")</label>
+                </div>
+            </div>
+        </div>
+        <p asp-validation-for="Email" class="text-danger"></p>
+        <p asp-validation-for="Password" class="text-danger"></p>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <button type="submit" class="ui fluid large submit button inverted" style="background-color: #00a78d">Login</button>
+
+
+
+    </form>
+    <div class="ui message">
+        New to us? <a asp-action="Register" asp-route-returnurl="@Model.ReturnUrl">Register</a>
+    </div>
+    <div class="ui message">
+        <a asp-action="ForgotPassword">@SharedLocalizer.GetLocalizedHtmlString("forgotYourPassword")?</a>
+    </div>
+</div>

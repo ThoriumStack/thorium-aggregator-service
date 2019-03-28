@@ -1,0 +1,19 @@
+﻿@model Thorium.Aggregator.Models.AccountViewModels.LogoutViewModel
+
+<div>
+    <div class="ui image header left aligned">
+        <div class="content">
+            <h1>Logout</h1>
+        </div>
+    </div>
+
+    
+    
+    <form class="ui large form" asp-action="Logout">
+        <p>Would you like to log out?</p>
+        <div class="ui stacked segment">
+            <input type="hidden" name="logoutId" value="@Model.LogoutId"/>
+            <button type="submit" class="ui fluid large submit button inverted" style="background-color: #00a78d">Yes</button>
+        </div>
+    </form>
+</div>
